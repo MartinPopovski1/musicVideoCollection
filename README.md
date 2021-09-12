@@ -1,27 +1,22 @@
-# MusicVideoCollection
+## Folder structure
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.5.
+Because the project was relatively small, it wasn't essential to give much attention to the folder structure, but I tried to set it up to make it easy to build more features to it later.
+After using the Angular CLI to bootstrap the project, I have added two main directories (pages and shared) in which I have put all the files for the project.
+Furthermore, my shared directory contains model and service directories. For the CSS, I decided to use separate files for every component.
+Also, I organized all of my exports in barrels.
 
-## Development server
+## Project flow
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+For obtaining the data from the API, I created a service.
+The service handles HTTP requests and provides functions for populating the data for the components.
+In a music collection app, the data is expected to be pretty big. So for filtering the data, I built a custom angular pipe,
+that should be good for performance.
 
-## Code scaffolding
+## The CSS
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+I developed the CSS with the mobile-first approach. I am using BEM or at least some variation of it, even though it is unnecessary because angular encapsulates the CSS for each component. I used flexbox for positioning, and I didn't use CSS framework for the most part, but I installed ng-select library to use the multiple select for genre filter
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Unit tests
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+I added unit tests for all the functions in the service and the components.

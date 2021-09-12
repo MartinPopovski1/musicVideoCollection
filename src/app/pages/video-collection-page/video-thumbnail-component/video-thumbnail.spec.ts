@@ -1,29 +1,21 @@
-/*
-import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { VideoThumbnailComponent } from './city-thumbnail.component';
-import { VideoService } from '../../../shared/services/index';
-import { ICity } from '../../../shared/models/index';
-import * as Rx from 'rxjs';
-import { delay } from "rxjs/operators";
+import { VideoThumbnailComponent } from './video-thumbnail.component';
+import { IVideo } from '../../../shared/models';
 
-const expectedCityInfo: ICity =
+
+const expectedVideoInfo: IVideo =
   {
-    id: 0,
-    name: 'Amsterdam',
-    currentTemperature: 12,
-    currentWind: 14,
-    forecastForNextHours: [
-      {
-        time: new Date(234256785),
-        temperature: 23,
-        wind: 12
-      }
-    ],
+    id: 501437,
+    artist: "Pants Velour",
+    title: "All In",
+    releaseYear: 2014,
+    genreId: 14,
+    imageUrl: "https://raw.githubusercontent.com/XiteTV/frontend-coding-exercise/679a82b1e7110c16e14412f1debaa118c10078a9/images/501437/images/app/w522_h292.jpg"
   }
 
-describe('CityThumbnailComponent', () => {
+describe('VideoThumbnailComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -33,13 +25,11 @@ describe('CityThumbnailComponent', () => {
       declarations: [
         VideoThumbnailComponent
       ],
-      providers : [
-        VideoService
-      ]
+      providers : []
     }).compileComponents();
   }));
 
-  it('should create CityThumbnail component', () => {
+  it('should create VideoThumbnail component', () => {
     const fixture = TestBed.createComponent(VideoThumbnailComponent);
     const component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
@@ -49,19 +39,10 @@ describe('CityThumbnailComponent', () => {
   it('should have city @input property defined', (() => {
     const fixture = TestBed.createComponent(VideoThumbnailComponent);
     const component = fixture.debugElement.componentInstance;
-    component.city = expectedCityInfo;
+    component.video = expectedVideoInfo;
     fixture.detectChanges()
-    expect(component.city).toBe(expectedCityInfo)
+    expect(component.video).toBe(expectedVideoInfo)
   }))
 
-  it('#getTheImageForTheCity returns the correct css class (string) that contains the image of the city', () => {
-    const fixture = TestBed.createComponent(VideoThumbnailComponent);
-    const component = fixture.debugElement.componentInstance;
-    component.city = expectedCityInfo;
-    const cityCssClass = component.getTheImageForTheCity();
-    const cityName = expectedCityInfo.name && expectedCityInfo.name.toLowerCase()
-    expect(cityCssClass[0]).toContain(cityName)
-  });
 
 });
-*/

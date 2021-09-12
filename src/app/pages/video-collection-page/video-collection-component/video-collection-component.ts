@@ -90,7 +90,7 @@ export class VideoCollectionComponent implements OnInit  {
       if(videosAndGenres && videosAndGenres.videos && videosAndGenres.genres) {
         this.videos = videosAndGenres.videos;
         this.genres = videosAndGenres.genres;
-        this.getAllReleaseYearsFromVideos(this.videos)
+        this.availableYears = this.getAllReleaseYearsFromVideos(this.videos)
       }
         this.showLoadingIndicator = false;
       },
@@ -101,10 +101,11 @@ export class VideoCollectionComponent implements OnInit  {
   }
 
   getAllReleaseYearsFromVideos(videos: any[]) {
-    this.availableYears = videos.reduce((acc, video) => {
+    const allReleaseYears = videos.reduce((acc, video) => {
       let isAlreadyInAvailableYears = acc.find((year: any) => year === video.releaseYear)
       if(!isAlreadyInAvailableYears) return [...acc, video.releaseYear];
       else return acc;
     }, [])
+    return allReleaseYears
   }
 }

@@ -1,82 +1,37 @@
-/*
 import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import {  VideoCollectionComponent } from './city-list.component';
-import { VideoService } from '../../../shared/services/index';
-import { ICity } from '../../../shared/models/index';
+import { VideoCollectionComponent } from './video-collection-component';
+import { VideoService } from '../../../shared/services';
 import * as Rx from 'rxjs';
 import { delay } from "rxjs/operators";
 
-const expectedCitiesInfo : ICity[] = [
-  {
-    id: 0,
-    name: 'Amsterdam',
-    currentTemperature: 12,
-    currentWind: 14,
-    forecastForNextHours: [
-      {
-        time: new Date(234256785),
-        temperature: 23,
-        wind: 12
-      }
-    ],
-  },
-  {
-    id: 1,
-    name: 'Berlin',
-    currentTemperature: 12,
-    currentWind: 14,
-    forecastForNextHours: [
-      {
-        time: new Date(234256785),
-        temperature: 23,
-        wind: 12
-      }
-    ],
-  },
-  {
-    id: 2,
-    name: 'Milan',
-    currentTemperature: 12,
-    currentWind: 14,
-    forecastForNextHours: [
-      {
-        time: new Date(234256785),
-        temperature: 23,
-        wind: 12
-      }
-    ],
-  },
-  {
-    id: 3,
-    name: 'Rome',
-    currentTemperature: 12,
-    currentWind: 14,
-    forecastForNextHours: [
-      {
-        time: new Date(234256785),
-        temperature: 23,
-        wind: 12
-      }
-    ],
-  },
-  {
-    id: 4,
-    name: 'Paris',
-    currentTemperature: 12,
-    currentWind: 14,
-    forecastForNextHours: [
-      {
-        time: new Date(234256785),
-        temperature: 23,
-        wind: 12
-      }
-    ],
-  }
-]
+const expectedMappedDataResponse: any = {
+  genres: [
+    { id: 5, name: "Pop" },
+    { id: 6, name: "Electronic/Dance" },
+    { id: 8, name: "Rock" },
+  ],
+  videos: [
+    {
+      id: 501437,
+      artist: "Pants Velour",
+      title: "All In",
+      release_year: 2014,
+      genre_id: 14,
+      image_url: "https://raw.githubusercontent.com/XiteTV/frontend-coding-exercise/679a82b1e7110c16e14412f1debaa118c10078a9/images/501437/images/app/w522_h292.jpg"
+    },
+    {
+      id: 501649,
+      artist: "El Koala",
+      title: "Veni paca to",
+      release_year: 2014,
+      genre_id: 8,
+      image_url: "https://raw.githubusercontent.com/XiteTV/frontend-coding-exercise/679a82b1e7110c16e14412f1debaa118c10078a9/images/501649/images/app/w522_h292.jpg"
+    }]
+}
 
-describe('CityListComponent', () => {
+describe('VideoCollectionComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -103,23 +58,32 @@ describe('CityListComponent', () => {
     const component = fixture.debugElement.componentInstance;
     let spy_initData = spyOn(component,"initData").and.returnValue([]);
     component.ngOnInit();
-    expect(component.cities).toEqual([]);
+    expect(component.videos).toEqual([]);
+    expect(component.genres).toEqual([]);
+    expect(component.availableYears).toEqual([]);
   })
 
-  it('should call initData and get array as response', fakeAsync(() => {
+  it('#initData should call getMappedVideosAndGenres should get object with mapped arrays of genres and videos', fakeAsync(() => {
     const fixture = TestBed.createComponent(VideoCollectionComponent);
     const component = fixture.debugElement.componentInstance;
     const service = fixture.debugElement.injector.get(VideoService);
-    let spy_cities = spyOn(service,"getCitiesInfo").and.callFake(() => {
-      return Rx.of(expectedCitiesInfo).pipe(delay(2000));
+    let spy_cities = spyOn(service,"getMappedVideosAndGenres").and.callFake(() => {
+      return Rx.of(expectedMappedDataResponse).pipe(delay(2000));
     });
     component.initData();
     tick(1000);
     expect(component.showLoadingIndicator).toEqual(true);
     tick(1000);
     expect(component.showLoadingIndicator).toEqual(false);
-    expect(component.cities).toEqual(expectedCitiesInfo);
+    expect(component.videos).toEqual(expectedMappedDataResponse.videos);
+    expect(component.genres).toEqual(expectedMappedDataResponse.genres);
   }))
 
+  it('#getAllReleaseYearsFromVideos given the videos mapped data should return array with all release years that can be found in the data ', () => {
+    const fixture = TestBed.createComponent(VideoCollectionComponent);
+    const component = fixture.debugElement.componentInstance;
+    const allReleaseYears = component.getAllReleaseYearsFromVideos(expectedMappedDataResponse.videos)
+    expect(allReleaseYears && allReleaseYears.length).toBeDefined();
+  });
+
 });
-*/

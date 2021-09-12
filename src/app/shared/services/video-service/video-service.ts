@@ -27,7 +27,7 @@ export class VideoService {
 
   mapResponseData(videosResponseData: { genres: any[]; videos: any[] }) {
     return {
-      genres: videosResponseData.genres ? videosResponseData.genres.map((genre: any) => this.mapGenres(genre)) : [],
+      genres: videosResponseData.genres ? videosResponseData.genres.map((genre: any) => this.mapGenre(genre)) : [],
       videos: videosResponseData.videos ? videosResponseData.videos.map((video: any) => this.mapVideo(video)) : []
     }
   }
@@ -44,7 +44,7 @@ export class VideoService {
     }
   }
 
-  mapGenres(genresRequestData: any) : IGenre {
+  mapGenre(genresRequestData: any) : IGenre {
     if(!genresRequestData) throw({message: "No response"});
     return {
       id: genresRequestData.id,
