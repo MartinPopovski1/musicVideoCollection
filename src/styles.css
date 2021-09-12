@@ -1,1 +1,108 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+html {
+  font-size: 0.63em;
+}
+.body-container {
+  height: 100vh;
+  margin: 0;
+  font-family: 'Roboto', Helevtica, sans-serif;
+}
+@media only screen and (min-width: 600px) {
+  html {
+    font-size: 0.646em;
+  }
+}
+
+/* ng multiple select */
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+  font-size: 1.4rem !important;
+  color: #fafafa  !important;
+  background-color: #212121 !important;
+  border-radius: 2px;
+  margin-right: 6px;
+}
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder {
+  top: auto;
+}
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value-icon {
+  font-size: 1.8rem;
+}
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value-icon:hover {
+  background-color: #212121 !important;
+  color: white;
+  opacity: 0.5;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  background-color: #e0e0e0 !important;
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected {
+  background-color: #e0e0e0 !important;
+}
+
+/* switch css  */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 29px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 23px;
+  width: 23px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #414141;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px black;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

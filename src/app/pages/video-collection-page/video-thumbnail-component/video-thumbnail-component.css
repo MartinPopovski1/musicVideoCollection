@@ -1,0 +1,42 @@
+.thumbnail-wrapper {
+  margin: 12px 12px;
+  padding-bottom: 9px;
+  border-radius: 6px;
+  transition: all .5s;
+  user-select: none;
+  z-index: 9;
+}
+.thumbnail-image-wrapper img{
+  border-radius: 6px 6px 0 0;
+  min-width: 200px;
+  max-width: 200px;
+  min-height: 100px;
+  max-height: 100px;
+}
+
+.thumbnail-wrapper:hover {
+  opacity: 0.8;
+  box-shadow: 0 6px 12px rgb(155, 155, 155);
+}
+
+.thumbnail-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.thumbnail-artist-info-wrapper {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-top: 9px;
+}
+
+.thumbnail-song-info-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  font-size: 1.05rem;
+}
+

@@ -1,0 +1,129 @@
+
+
+.video-collection-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 0;
+
+  height: 100%;
+  color: #212121;
+  background-color: #fafafa;
+}
+.video-collection-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 100%;
+
+  min-width: 100%;
+  box-shadow: 0 6px 12px rgb(155, 155, 155);
+}
+
+.video-collection-black-wrapper {
+  background-color: #212121;
+  color: #fafafa;
+}
+
+.video-collection-header-wrapper {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px;
+}
+
+.video-collection-title-wrapper {
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+.video-collection-switch-wrapper {
+
+}
+
+.video-collection-genre-filter-wrapper {
+  display: flex;
+  flex: 0 1 auto;
+  padding: 6px 9px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+}
+.video-collection-genre-filter-wrapper ng-select {
+  font-size: 1.4rem;
+  width: 100%;
+  padding: 6px;
+}
+.video-collection-filters-wrapper {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 6px 9px;
+  border: 1px solid #ccc;
+}
+.video-collection-search-wrapper {
+  display: flex;
+  flex: 1 1 0;
+  margin: 3px 6px;
+  color: #bdbdbd;
+}
+.video-collection-search-wrapper input {
+  font-size: 1.4rem;
+  width: 100%;
+  height: 33px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  outline: 0;
+
+}
+.video-collection-year-filter-wrapper {
+  display: flex;
+  flex: 1 1 0;
+  margin: 3px 6px;
+}
+.video-collection-year-filter-wrapper ng-select{
+  font-size: 1.4rem;
+  width: 100%;
+  padding: 6px;
+}
+
+.video-thumbnail-list-wrapper {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 9px;
+}
+.video-thumbnail-list-wrapper {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+@media only screen and (min-width: 960px) {
+  .video-collection-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 100%;
+
+
+    min-width: 900px;
+    max-width: 900px;
+    padding: 21px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 450px) {
+  .video-thumbnail-list-wrapper {
+    justify-content: flex-start;
+  }
+}
