@@ -1,1 +1,2 @@
-export * from './city-model'
+export * from './video-model'
+export * from './genre-model'

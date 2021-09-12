@@ -6,15 +6,18 @@ export class FilterPipe implements PipeTransform {
   transform(value: any[], searchText: string, selectedGenres: any[], selectedYear: number): any {
     let result:any[] = value;
     if (searchText) {
-      result = value.filter((video: { title: string; artist: string; }) =>
-        video.title.toLowerCase().indexOf(searchText.toLowerCase()) > -1 ||
-        video.artist.toLowerCase().indexOf(searchText.toLowerCase()) > -1)
+      result = result.filter((video: { title: string; artist: string; }) => {
+        if(!video.title.toLowerCase) console.log(video);
+        return video.title && video.title.toLowerCase().includes(searchText.toLowerCase()) ||
+          video.artist && video.artist.toLowerCase().includes(searchText.toLowerCase())
+      })
+
     }
     if(selectedGenres && selectedGenres.length) {
-      result = value.filter((video) => selectedGenres.find(genre => genre.id === video.genreId))
+      result = result.filter((video) => selectedGenres.find(genre => genre.id === video.genreId))
     }
     if(selectedYear) {
-      result = value.filter((video) => video.releaseYear === selectedYear)
+      result = result.filter((video) => video.releaseYear === selectedYear)
     }
     return result;
 }

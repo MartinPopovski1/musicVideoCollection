@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core'
+import { VideoService } from '../../../shared/services'
+import { IVideo, IGenre } from "../../../shared/models";
 
 @Component({
   selector: 'music-collection',
   template: `
     <div class="video-collection-page-wrapper" [ngClass]="{'video-collection-black-wrapper': isDarkMode}">
-      <div class="video-collection-content-wrapper">
+      <div class="video-collection-content-wrapper" *ngIf="videos && videos.length">
         <div class="video-collection-header-wrapper">
           <div class="video-collection-title-wrapper"> Music Video Collection </div>
           <div class="video-collection-switch-wrapper">
@@ -39,13 +41,18 @@ import { Component, OnInit } from '@angular/core'
           </div>
         </div>
         <div class="video-thumbnail-list-wrapper">
-          <video-thumbnail *ngFor="let video of (videos | filter:searchedText: selectedGenres: selectedYear)" [video]="video">
+          <video-thumbnail *ngFor="let video of (videos | filter:searchedText: selectedGenres: selectedYear)"
+                           [video]="video">
           </video-thumbnail>
-<!--          <div *ngIf="(videos | filter:searchedText).length <1">
-            Not Found
-          </div>-->
         </div>
+      </div>
 
+      <div *ngIf="showLoadingIndicator" class=" col-lg-12 video-list-loading-wrapper">
+        <div>LOADING</div>
+      </div>
+      <div *ngIf="(!videos || !videos.length) && !showLoadingIndicator"
+           class=" col-lg-12 video-list-loading-wrapper">
+        <div>Data Loading Error</div>
       </div>
     </div>
 
@@ -59,36 +66,19 @@ export class VideoCollectionComponent implements OnInit  {
   selectedYear:any;
   searchedText:string;
   selectedGenres:any[] = [];
-
-  videos:any[] = [
-    { genreId: 1, artist: "BMW Hyundai", title: "Song of hope", releaseYear: 1990 },
-    { genreId: 5, artist: "Kia Tata", title: "Fav title", releaseYear: 2020 },
-    { genreId: 3, artist: "Volkswagen Ford", title: "Be real", releaseYear: 1990  },
-    { genreId: 4, artist: "Renault Audi", title: "Like me", releaseYear: 2001  },
-    { genreId: 5, artist: "Mercedes Benz Skoda", title: "No skoda", releaseYear: 1990  },
-  ];
-
-  genres:any[] = [
-    { "id": 5, "name": "Pop" },
-    { "id": 4, "name": "Electronic/Dance" },
-    { "id": 3, "name": "Rock" },
-    { "id": 2, "name": "Country" },
-  ];
-
+  videos:IVideo[];
+  genres:IGenre[];
   availableYears:any[];
 
-
-
-  constructor() {
+  constructor(private videoService:VideoService) {
     this.showLoadingIndicator = false;
     this.isDarkMode = false;
     this.searchedText = '';
     this.selectedYear = null;
-    this.availableYears = [
-      1990, 2001, 2020
-    ];
+    this.videos = []
+    this.genres = []
+    this.availableYears = []
   }
-
 
   ngOnInit() {
     this.initData()
@@ -96,12 +86,25 @@ export class VideoCollectionComponent implements OnInit  {
 
   initData() {
     this.showLoadingIndicator = true;
+    this.videoService.getMappedVideosAndGenres().subscribe((videosAndGenres: any) => {
+      if(videosAndGenres && videosAndGenres.videos && videosAndGenres.genres) {
+        this.videos = videosAndGenres.videos;
+        this.genres = videosAndGenres.genres;
+        this.getAllReleaseYearsFromVideos(this.videos)
+      }
+        this.showLoadingIndicator = false;
+      },
+      error => {
+        console.log(error);
+        this.showLoadingIndicator = false;
+      })
+  }
 
-    /* this.availableYears = this.videos.reduce((video, acc) => {
-     let isAlreadyInAvailableYears = this.availableYears.find(year => year === video.releaseYear)
-       if(!isAlreadyInAvailableYears) return video.releaseYear;
-       else return acc;
-      }) */
-
+  getAllReleaseYearsFromVideos(videos: any[]) {
+    this.availableYears = videos.reduce((acc, video) => {
+      let isAlreadyInAvailableYears = acc.find((year: any) => year === video.releaseYear)
+      if(!isAlreadyInAvailableYears) return [...acc, video.releaseYear];
+      else return acc;
+    }, [])
   }
 }

@@ -7,7 +7,7 @@ import {VideoThumbnailComponent} from "./pages/video-collection-page/video-thumb
 import { FormsModule } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
 import {FilterPipe} from "./pages/video-collection-page/video-collection-component/custom-pipe-for-videos";
-
+import {VideoService} from "./shared/services";
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import {FilterPipe} from "./pages/video-collection-page/video-collection-compone
     FormsModule,
     NgSelectModule
   ],
-  providers: [],
+  providers: [VideoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

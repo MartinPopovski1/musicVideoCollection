@@ -1,27 +1,36 @@
 
-
 .video-collection-page-wrapper {
   display: flex;
   flex-direction: column;
-  flex: 0 0 0;
+  flex: 1 0 0;
 
-  height: 100%;
+  min-height: 100%;
   color: #212121;
   background-color: #fafafa;
+  user-select: none;
 }
 .video-collection-content-wrapper {
   display: flex;
   flex-direction: column;
-  flex: 0 0 100%;
+  flex: 1 0 0;
 
   min-width: 100%;
   box-shadow: 0 6px 12px rgb(155, 155, 155);
 }
-
 .video-collection-black-wrapper {
   background-color: #212121;
   color: #fafafa;
 }
+
+.video-list-loading-wrapper {
+  display: flex;
+  flex: 1 1 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  text-align: center;
+}
+
 
 .video-collection-header-wrapper {
   display: flex;
@@ -29,7 +38,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 9px;
+  padding: 9px 12px;
 }
 
 .video-collection-title-wrapper {
@@ -43,9 +52,8 @@
 .video-collection-genre-filter-wrapper {
   display: flex;
   flex: 0 1 auto;
-  padding: 6px 9px;
+  padding: 6px;
   margin: 6px 0;
-  border: 1px solid #ccc;
 }
 .video-collection-genre-filter-wrapper ng-select {
   font-size: 1.4rem;
@@ -59,8 +67,7 @@
   justify-content: space-between;
   align-items: center;
 
-  padding: 6px 9px;
-  border: 1px solid #ccc;
+  padding: 6px;
 }
 .video-collection-search-wrapper {
   display: flex;
@@ -100,7 +107,7 @@
 }
 .video-thumbnail-list-wrapper {
   display: flex;
-  flex: 0 0 auto;
+  flex: 1 0 0;
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;

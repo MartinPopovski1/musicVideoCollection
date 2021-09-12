@@ -1,18 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core'
+import {Component, Input} from '@angular/core'
+import { IVideo} from "../../../shared/models";
 
 @Component({
   selector: 'video-thumbnail',
   template: `
     <div class="thumbnail-wrapper">
       <div class="thumbnail-image-wrapper">
-        <img src="../../../../assets/rome.png" draggable="false" alt="Image not found"/>
+        <img [src]="video && video.imageUrl" draggable="false" alt="Image not found"/>
       </div>
       <div class="thumbnail-info-wrapper">
         <div class="thumbnail-artist-info-wrapper">
-          {{ video.artist }}
+          {{ video && video.artist }}
         </div>
         <div class="thumbnail-song-info-wrapper">
-          {{ video.title }}
+          {{ video && video.title }}
         </div>
       </div>
     </div>
@@ -20,13 +21,9 @@ import {Component, Input, OnInit} from '@angular/core'
   styleUrls: ['./video-thumbnail-component.css']
 })
 
-export class VideoThumbnailComponent implements OnInit {
-  @Input() video: any;
+export class VideoThumbnailComponent {
+  @Input() video: IVideo | undefined;
 
   constructor() {}
-
-  ngOnInit() {
-    console.log(this.video)
-  }
 
 }
