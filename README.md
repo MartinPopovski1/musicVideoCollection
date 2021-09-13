@@ -8,9 +8,9 @@ Also, I organized all of my exports in barrels.
 ## Project flow
 
 For obtaining the data from the API, I created a service.
-The service handles HTTP requests and provides functions for populating the data for the components.
+The service handles HTTP requests, HTTP request errors, and provides functions for populating the data for the components. 
 In a music collection app, the data is expected to be pretty big. So for filtering the data, I built a custom angular pipe,
-that should be good for performance.
+that should be good for performance. Also, I am showing loading message while loading and error message in case of occurring error while loading the data
 
 ## The CSS
 
